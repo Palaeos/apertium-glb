@@ -1,0 +1,10 @@
+{
+    "analysis": {
+        "input": "analysis-input.txt",
+        "mode": "glb-disam"
+    },
+    "generation": {
+        "input": "generation-input.txt",
+        "mode": "glb-gener"
+    }
+}

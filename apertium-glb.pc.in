@@ -1,0 +1,8 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+srcdir=@datarootdir@/apertium/apertium-glb
+
+Name: apertium-glb
+Description: Finite-state morphological transducer and constraint grammar for glb
+Version: @VERSION@
+
