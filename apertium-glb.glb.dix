@@ -182,7 +182,7 @@
 
       <e>       <p><l>u no</l>                        <r>u<s n="vbpr"/><s n="neg"/></r></p></e>
       <e>       <p><l>na no</l>                       <r>u<s n="vbpr"/><s n="inf"/><s n="neg"/></r></p></e>
-      <e>       <p><l>nun no</l>                      <r>u<s n="vbpr"/><s n="pres"/></r></p></e>
+      <e>       <p><l>nun no</l>                      <r>u<s n="vbpr"/><s n="pres"/><s n="neg"/></r></p></e>
       <e>       <p><l>nun nun no</l>               <r>u<s n="vbpr"/><s n="pres"/><s n="impf"/><s n="neg"/></r></p></e>
       <e>       <p><l>nun le no</l>                <r>u<s n="vbpr"/><s n="pres"/><s n="perf"/><s n="neg"/></r></p></e>
       <e>       <p><l>nun xa no</l>                <r>u<s n="vbpr"/><s n="pres"/><s n="pros"/><s n="neg"/></r></p></e>
@@ -202,7 +202,7 @@
 
       <e>       <p><l>u si</l>                        <r>u<s n="vbpr"/><s n="aff"/></r></p></e>
       <e>       <p><l>na si</l>                       <r>u<s n="vbpr"/><s n="inf"/><s n="aff"/></r></p></e>
-      <e>       <p><l>nun si</l>                      <r>u<s n="vbpr"/><s n="pres"/></r></p></e>
+      <e>       <p><l>nun si</l>                      <r>u<s n="vbpr"/><s n="pres"/><s n="aff"/></r></p></e>
       <e>       <p><l>nun nun si</l>               <r>u<s n="vbpr"/><s n="pres"/><s n="impf"/><s n="aff"/></r></p></e>
       <e>       <p><l>nun le si</l>                <r>u<s n="vbpr"/><s n="pres"/><s n="perf"/><s n="aff"/></r></p></e>
       <e>       <p><l>nun xa si</l>                <r>u<s n="vbpr"/><s n="pres"/><s n="pros"/><s n="aff"/></r></p></e>
