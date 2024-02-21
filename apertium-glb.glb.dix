@@ -4,7 +4,7 @@
   <!-- Define the alphabet below. -->
   <alphabet>aAáÁăảạÆbBcCčdDÐeEéèễệfFgGhHiIíjJkKlLmMnNoOóöớpPqQrRsSšştTŢuUúüưvVwWxXyYzZ</alphabet>
 
-  <sdefs>
+    <sdefs>
     <!-- Define symbol definitions within <sdef> here. -->
     <sdef n="n"               c="Noun"/>
     <sdef n="np"              c="Proper noun"/>
@@ -22,7 +22,6 @@
     <sdef n="ij"              c="Interjection"/>
     <sdef n="adj"             c="Adjective"/>
     <sdef n="prn"             c="Pronoun"/>
-    <sdef n="pfx"             c="Pronoun"/>
 
     <sdef n="attr"            c="Attributive"/>
     <sdef n="top"             c="Toponym"/>
@@ -130,6 +129,11 @@
 
     <pardef n="__adj">
       <e>       <p><l></l>          <r><s n="adj"/></r></p></e>
+      <e r="RL">       <p><l> tø</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="GD"/><s n="pl"/></r></p></e>
+      <e>       <p><l> te</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="ut"/><s n="pl"/></r></p></e>
+      <e>       <p><l> to</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="pl"/></r></p></e>
+      <e>       <p><l> ete</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="ut"/><s n="pl"/></r></p></e>
+      <e>       <p><l> oto</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="pl"/></r></p></e>
     </pardef>
 
     <pardef n="cor__prn">
@@ -141,7 +145,7 @@
       <e>              <p><l>to</l>       <r><s n="prn"/><s n="nt"/><s n="sg"/></r></p></e>
       <e>              <p><l>oto</l>      <r><s n="prn"/><s n="nt"/><s n="pl"/></r></p></e>
       <e>              <p><l>su</l>       <r><s n="det"/><s n="pos"/></r></p></e>
-      <e>              <p><l>pul</l>      <r>pul<s n="adj"/></r></p></e>
+      <e>              <p><l>pul</l>      <r>pul<s n="prn"/><s n="nt"/><s n="pl"/></r></p></e>
       <e>              <p><l>mo</l>       <r>mo<s n="adv"/></r></p></e>
       <e>              <p><l>kwanti</l>   <r>kwanti<s n="det"/></r></p></e>
       <e>              <p><l>numer</l>   <r>numer<s n="det"/></r></p></e>      
