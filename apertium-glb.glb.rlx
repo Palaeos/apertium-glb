@@ -3,10 +3,25 @@ DELIMITERS = "<.>" ;
 
 # We can define sets for common tag clusters
 # LIST Case = (n s) (n p) ; # A set that matches either a Noun Singular or a Noun Plural
+LIST Nom = n prn ; # A set that matches either a Noun or a Pronoun
+LIST v = vblex vbser ; # A set that matches either a Noun or a Pronoun
 
 SECTION
 # If there is a singular noun to the right, I cannot be a verb or noun.
 # REMOVE (n) OR (v) IF (1 (n s)) ;
+
+
+SELECT (n) IF (-1* (pr)) ;
+SELECT (adj) IF (-1* (pr)) (1* Nom)  ;
+SELECT (v) IF (-1* (vbpr)) ;
+SELECT (adv) IF (-1* (vbpr)) (1* v) ;
+SELECT (v) IF (-1* Nom) (1* Nom) ;
+SELECT (adv) IF (-1* Nom) (1* Nom) ;
+SELECT (n) IF (1* Nom) (2* Nom) ;
+SELECT (n) IF (-1* Nom) (-2* Nom) ;
+SELECT (adj) IF (1* Nom) (2* Nom) (3* Nom) ;
+SELECT (adj) IF (-2* Nom) (-1* Nom) (1* Nom) ;
+
 
 # If there is a conjunction followed by a certain cohort of the same CASE as me, choose me.
 # SELECT $$Case IF (1 (cnjcoo) LINK 1C $$Case) ;
