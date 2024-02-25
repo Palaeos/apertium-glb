@@ -211,6 +211,7 @@
       <e>       <p><l>mas</l>                        <r>mas<s n="cnjcoo"/></r></p></e>
 
       <e>       <p><l>ki</l>                        <r>ki<s n="cnjsub"/></r></p></e>
+      <e>       <p><l>eger</l>                        <r>eger<s n="cnjsub"/></r></p></e>
       <e>       <p><l>hu</l>                        <r>hu<s n="cnjsub"/></r></p></e>
 
       <e>       <p><l>u</l>                        <r>u<s n="vbpr"/></r></p></e>
@@ -311,6 +312,8 @@
       <e>       <p><l>vole</l>                        <r>vole<s n="vblex"/></r></p></e>
 
 <!--   -->
+
+      <e>       <p><l>si</l>                        <r>si<s n="ij"/></r></p></e>
 
 <e><p><l>aw</l>       <r>aw<s n = "pfx"/></r></p></e>
 <e><p><l>be</l>       <r>be<s n = "pfx"/></r></p></e>
