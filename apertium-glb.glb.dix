@@ -129,7 +129,90 @@
       <e>       <p><l>do</l>        <r><s n="vblex"/><s n="pp"/></r></p></e>
     </pardef>
 
-    <pardef n="u__vbpr">
+    <pardef n="__adj">
+      <e>       <p><l></l>          <r><s n="adj"/></r></p></e>
+    </pardef>
+
+    <pardef n="cor__prn">
+      <e>              <p><l></l>          <r><s n="det"/></r></p></e>
+      <e r="RL">       <p><l>tø</l>       <r><s n="prn"/><s n="GD"/><s n="sg"/></r></p></e>
+      <e r="RL">       <p><l>øtø</l>       <r><s n="prn"/><s n="GD"/><s n="pl"/></r></p></e>
+      <e>              <p><l>te</l>       <r><s n="prn"/><s n="ut"/><s n="sg"/></r></p></e>
+      <e>              <p><l>ete</l>      <r><s n="prn"/><s n="ut"/><s n="pl"/></r></p></e>
+      <e>              <p><l>to</l>       <r><s n="prn"/><s n="nt"/><s n="sg"/></r></p></e>
+      <e>              <p><l>oto</l>      <r><s n="prn"/><s n="nt"/><s n="pl"/></r></p></e>
+      <e>              <p><l>su</l>       <r><s n="det"/><s n="pos"/></r></p></e>
+      <e>              <p><l>pul</l>      <r>pul<s n="adj"/></r></p></e>
+      <e>              <p><l>mo</l>       <r>mo<s n="adv"/></r></p></e>
+      <e>              <p><l>kwanti</l>   <r>kwanti<s n="det"/></r></p></e>
+      <e>              <p><l>numer</l>   <r>numer<s n="det"/></r></p></e>      
+      <e>              <p><l>loka</l>   <r>loka<s n="adv"/></r></p></e>
+      <e>              <p><l>watu</l>   <r>watu<s n="adv"/></r></p></e>
+      <e>              <p><l>seba</l>   <r>seba<s n="adv"/></r></p></e>
+      <e>              <p><l>maner</l>   <r>maner<s n="adv"/></r></p></e>
+    </pardef>
+
+
+    <pardef n="__n">
+      <e>       <p><l></l>          <r><s n="n"/></r></p></e>
+      <e>       <p><l>su</l>        <r><s n="n"/><j/>su<s n="pos"/></r></p></e>
+    </pardef>
+
+    <pardef n="cp-R"
+            c="Add hidden tag during analysis (allowing use as final compound part),
+               allow generation without the tag.">
+      <e r="RL"><p><l></l>            <r></r></p></e>
+      <e r="LR"><p><l></l>            <r><s n="compound-R"/></r></p></e>
+    </pardef>
+    
+    <pardef n="cp-L"
+            c="Add hidden tag for analysis as non-final compound (along with non-hidden cmp-tag),
+               allow generation with non-hidden cmp-tag">
+      <e r="RL"><p><l></l>            <r><s n="cmp"/></r></p></e>
+      <e r="LR"><p><l></l>            <r><s n="cmp"/><s n="compound-only-L"/></r></p></e>
+    </pardef>
+    
+    <pardef n="cp-both"
+            c="For analyses that can be both non-final and final">
+      <e>       <p><l></l>            <r></r></p> <par n="cp-L"/></e>
+      <e>       <p><l></l>            <r></r></p> <par n="cp-R"/></e>
+    </pardef>
+
+    <!-- Example noun inflection paradigm:
+    <pardef n="house__n">
+      <e><p><l></l><r><s n="n"/><s n="attr"/></r></p></e>
+      <e><p><l></l><r><s n="n"/><s n="sg"/></r></p></e>
+      <e><p><l>s</l><r><s n="n"/><s n="pl"/></r></p></e>
+    </pardef>
+    -->
+  </pardefs>
+
+  <section id="main" type="standard">
+    <!-- Define entries within <e> here. -->
+    <!-- Example entry:
+    <e lm="house"><i>house</i><par n="house__n"/></e>-->
+<!-- 
+      <e lm="u">    <i>u</i><par n="u__vbpr"/></e>
+ -->
+      <e lm="ke">    <i>ke</i><par n="cor__prn"/></e>
+      <e lm="hin">    <i>hin</i><par n="cor__prn"/></e>
+      <e lm="den">    <i>den</i><par n="cor__prn"/></e>
+      <e lm="ban">    <i>ban</i><par n="cor__prn"/></e>
+      <e lm="moy">    <i>moy</i><par n="cor__prn"/></e>
+      <e lm="nil">    <i>nil</i><par n="cor__prn"/></e>
+      <e lm="alo">    <i>alo</i><par n="cor__prn"/></e>
+      <e lm="sama">    <i>sama</i><par n="cor__prn"/></e>
+
+      <e>       <p><l>su</l>                        <r>su<s n="pos"/></r></p></e>
+
+      <e>       <p><l>ji</l>                        <r>ji<s n="cnjcoo"/></r></p></e>
+      <e>       <p><l>or</l>                        <r>or<s n="cnjcoo"/></r></p></e>
+      <e>       <p><l>mas</l>                        <r>mas<s n="cnjcoo"/></r></p></e>
+      <e>       <p><l>mas</l>                        <r>mas<s n="cnjcoo"/></r></p></e>
+
+      <e>       <p><l>ki</l>                        <r>ki<s n="cnjsub"/></r></p></e>
+      <e>       <p><l>hu</l>                        <r>hu<s n="cnjsub"/></r></p></e>
+
       <e>       <p><l>u</l>                        <r>u<s n="vbpr"/></r></p></e>
       <e>       <p><l>na</l>                       <r>u<s n="vbpr"/><s n="inf"/></r></p></e>
       <e>       <p><l>nun</l>                      <r>u<s n="vbpr"/><s n="pres"/></r></p></e>
@@ -191,96 +274,6 @@
       <e>       <p><l>ger le si</l>                <r>u<s n="vbpr"/><s n="cni"/><s n="perf"/><s n="aff"/></r></p></e>
       <e>       <p><l>ger xa si</l>                <r>u<s n="vbpr"/><s n="cni"/><s n="pros"/><s n="aff"/></r></p></e>
       <e>       <p><l>am si</l>                       <r>u<s n="vbpr"/><s n="imp"/><s n="aff"/></r></p></e>
-    </pardef>
-
-    <pardef n="__adj">
-      <e>       <p><l></l>          <r><s n="adj"/></r></p></e>
-    </pardef>
-
-    <pardef n="cor__prn">
-      <e>              <p><l></l>          <r><s n="det"/></r></p></e>
-      <e r="RL">       <p><l>tø</l>       <r><s n="prn"/><s n="GD"/><s n="sg"/></r></p></e>
-      <e r="RL">       <p><l>øtø</l>       <r><s n="prn"/><s n="GD"/><s n="pl"/></r></p></e>
-      <e>              <p><l>te</l>       <r><s n="prn"/><s n="ut"/><s n="sg"/></r></p></e>
-      <e>              <p><l>ete</l>      <r><s n="prn"/><s n="ut"/><s n="pl"/></r></p></e>
-      <e>              <p><l>to</l>       <r><s n="prn"/><s n="nt"/><s n="sg"/></r></p></e>
-      <e>              <p><l>oto</l>      <r><s n="prn"/><s n="nt"/><s n="pl"/></r></p></e>
-      <e>              <p><l>su</l>       <r><s n="det"/><s n="pos"/></r></p></e>
-      <e>              <p><l>pul</l>      <r>pul<s n="adj"/></r></p></e>
-      <e>              <p><l>mo</l>       <r>mo<s n="adv"/></r></p></e>
-      <e>              <p><l>kwanti</l>   <r>kwanti<s n="det"/></r></p></e>
-      <e>              <p><l>numer</l>   <r>numer<s n="det"/></r></p></e>      
-      <e>              <p><l>loka</l>   <r>loka<s n="adv"/></r></p></e>
-      <e>              <p><l>watu</l>   <r>watu<s n="adv"/></r></p></e>
-      <e>              <p><l>seba</l>   <r>seba<s n="adv"/></r></p></e>
-      <e>              <p><l>maner</l>   <r>maner<s n="adv"/></r></p></e>
-    </pardef>
-
-
-    <pardef n="__n">
-      <e>       <p><l></l>          <r><s n="n"/></r></p></e>
-      <e>       <p><l>su</l>        <r><s n="n"/><j/>su<s n="pos"/></r></p></e>
-      <e>       <p><l>li</l>        <r>li<s n="adj"/></r></p></e>
-    </pardef>
-
-    <pardef n="cp-R"
-            c="Add hidden tag during analysis (allowing use as final compound part),
-               allow generation without the tag.">
-      <e r="RL"><p><l></l>            <r></r></p></e>
-      <e r="LR"><p><l></l>            <r><s n="compound-R"/></r></p></e>
-    </pardef>
-    
-    <pardef n="cp-L"
-            c="Add hidden tag for analysis as non-final compound (along with non-hidden cmp-tag),
-               allow generation with non-hidden cmp-tag">
-      <e r="RL"><p><l></l>            <r><s n="cmp"/></r></p></e>
-      <e r="LR"><p><l></l>            <r><s n="cmp"/><s n="compound-only-L"/></r></p></e>
-    </pardef>
-    
-    <pardef n="cp-both"
-            c="For analyses that can be both non-final and final">
-      <e>       <p><l></l>            <r></r></p> <par n="cp-L"/></e>
-      <e>       <p><l></l>            <r></r></p> <par n="cp-R"/></e>
-    </pardef>
-
-    <!-- Example noun inflection paradigm:
-    <pardef n="house__n">
-      <e><p><l></l><r><s n="n"/><s n="attr"/></r></p></e>
-      <e><p><l></l><r><s n="n"/><s n="sg"/></r></p></e>
-      <e><p><l>s</l><r><s n="n"/><s n="pl"/></r></p></e>
-    </pardef>
-    -->
-  </pardefs>
-
-  <section id="main" type="standard">
-    <!-- Define entries within <e> here. -->
-    <!-- Example entry:
-    <e lm="house"><i>house</i><par n="house__n"/></e>-->
-<!-- 
-      <e lm="u">    <i>u</i><par n="u__vbpr"/></e>
- -->
-      <e lm="ke">    <i>ke</i><par n="cor__prn"/></e>
-      <e lm="hin">    <i>hin</i><par n="cor__prn"/></e>
-      <e lm="den">    <i>den</i><par n="cor__prn"/></e>
-      <e lm="ban">    <i>ban</i><par n="cor__prn"/></e>
-      <e lm="moy">    <i>moy</i><par n="cor__prn"/></e>
-      <e lm="nil">    <i>nil</i><par n="cor__prn"/></e>
-      <e lm="alo">    <i>alo</i><par n="cor__prn"/></e>
-      <e lm="sama">    <i>sama</i><par n="cor__prn"/></e>
-      <e lm="u">        <i>u</i><par n="u__vbpr"/></e>
-
-
-      <e>       <p><l>su</l>                        <r>su<s n="pos"/></r></p></e>
-
-      <e>       <p><l>ji</l>                        <r>ji<s n="cnjcoo"/></r></p></e>
-      <e>       <p><l>or</l>                        <r>or<s n="cnjcoo"/></r></p></e>
-      <e>       <p><l>mas</l>                        <r>mas<s n="cnjcoo"/></r></p></e>
-      <e>       <p><l>mas</l>                        <r>mas<s n="cnjcoo"/></r></p></e>
-
-      <e>       <p><l>ki</l>                        <r>ki<s n="cnjsub"/></r></p></e>
-      <e>       <p><l>hu</l>                        <r>hu<s n="cnjsub"/></r></p></e>
-
-     
 
 
 
