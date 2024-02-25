@@ -11,14 +11,19 @@ SECTION
 # REMOVE (n) OR (v) IF (1 (n s)) ;
 
 
-SELECT (n) IF (-1* (pr)) ;
+SELECT (n) IF (-1 (pr))  ;
+SELECT (n) IF  (-2* (pr)) (1* (adj))  ;
 SELECT (adj) IF (-1* (pr)) (1* Nom)  ;
-SELECT (v) IF (-1* (vbpr)) ;
+SELECT (v) IF (-1* (vbpr)) (NOT -1* Nom) ;
 SELECT (adv) IF (-1* (vbpr)) (1* v) ;
+SELECT (v) IF (-1* Nom) (NOT 1* (pr)) (2* Nom)  ;
 SELECT (v) IF (-1* Nom) (1* Nom) ;
+SELECT (adj) IF (-2* (vbpr)) (-1* Nom) (1* Nom) ;
+SELECT (adj) IF (-2* (vbpr)) (-1* Nom) (1* Nom) ;
 SELECT (adv) IF (-1* Nom) (1* Nom) ;
-SELECT (n) IF (1* Nom) (2* Nom) ;
-SELECT (n) IF (-1* Nom) (-2* Nom) ;
+SELECT (v) IF (1* Nom) (2* (pr)) (3* Nom) ;
+SELECT (v) IF (1* Nom) (NOT -2* (pr)) (2* Nom) ;
+SELECT (n) IF (-1* Nom) (NOT -2* (pr)) (-2* Nom) ;
 SELECT (adj) IF (1* Nom) (2* Nom) (3* Nom) ;
 SELECT (adj) IF (-2* Nom) (-1* Nom) (1* Nom) ;
 
