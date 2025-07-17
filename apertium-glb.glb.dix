@@ -280,7 +280,11 @@
 
 
     <e>                      <p><l>mi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="ut"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>manmi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="m"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>femmi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="f"/><s n="sg"/></r></p></e>
     <e>                      <p><l>yu</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="ut"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>manyu</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="m"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>femyu</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="f"/><s n="sg"/></r></p></e>
     <e>                      <p><l>tø</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="GD"/><s n="sg"/></r></p></e>
     <e>                      <p><l>te</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="ut"/><s n="sg"/></r></p></e>
     <e>                      <p><l>femte</l>     <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
@@ -290,6 +294,8 @@
     <e>                      <p><l>uyu</l>       <r>prpers<s n="prn"/><s n="p2"/><s n="ut"/><s n="pl"/></r></p></e>
     <e>                      <p><l>øtø</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="GD"/><s n="pl"/></r></p></e>
     <e>                      <p><l>ete</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="ut"/><s n="pl"/></r></p></e>
+    <e>                      <p><l>manete</l>    <r>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="pl"/></r></p></e>
+    <e>                      <p><l>femete</l>    <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="pl"/></r></p></e>
     <e>                      <p><l>oto</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="pl"/></r></p></e>
 
     <e>                      <p><l>misu</l>        <r>prpers<s n="det"/><s n="pos"/><s n="p1"/><s n="ut"/><s n="sg"/></r></p></e>
