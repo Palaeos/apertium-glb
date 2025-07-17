@@ -382,10 +382,16 @@
       <e><p><l>be</l>       <r>be<s n = "pfx"/></r></p></e>
       <e><p><l>du</l>       <r>du<s n = "pfx"/></r></p></e>
 
-        <e><p><l>hu</l>       <r>hu<s n = "cnjsub"/></r></p></e>
+      <e><p><l>hu</l>       <r>hu<s n = "cnjsub"/></r></p></e>
+      <e><p><l>da</l>       <r>da<s n="prn"/></r></p></e>
 
-<e><i>den</i><par n="cor__prn"/><p><l><b/>hu</l><r><j/>hu<s n="cnjsub"/></r></p></e>
 
+      <e><p><l>kama</l>       <r>kama<s n = "cnjsub"/></r></p></e>
+
+     
+
+
+<!--  <e><i>den</i><par n="cor__prn"/><p><l><b/>hu</l><r><j/>hu<s n="cnjsub"/></r></p></e> -->
 <e><p><l>uje</l>       <r>uje<s n = "adv"/></r></p></e>
 
 <e><p><l>-abil</l>       <r>-abil<s n = "adv"/></r></p></e>
