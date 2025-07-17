@@ -102,6 +102,7 @@
     <sdef n="rpar"            c="Right parenthesis"/>
     <sdef n="lquot"           c="Left quote"/>
     <sdef n="rquot"           c="Right quote"/>
+    <sdef n="lquest" 	c="left question mark"/> 
 
     <sdef n="cmp" c="compound"/>
     <sdef n="compound-only-L" c="May only be the left-side of a compound"/>
@@ -109,6 +110,58 @@
   </sdefs>
 
   <pardefs>
+
+    <pardef n="guionet">
+      <e>       <p><l>-</l>         <r>-<s n="guio"/></r></p></e>
+    </pardef>
+
+    <pardef n="coma">
+      <e>       <p><l>,</l>         <r>,<s n="cm"/></r></p></e>
+    </pardef>
+
+    <pardef n="lainausmerkit">
+      <e>       <p><l>&quot;</l>    <r>&quot;<s n="lquot"/></r></p></e>
+      <e>       <p><l>&quot;</l>    <r>&quot;<s n="rquot"/></r></p></e>
+      <e>       <p><l>”</l>         <r>&quot;<s n="rquot"/></r></p></e>
+      <e>       <p><l>“</l>         <r>&quot;<s n="lquot"/></r></p></e>
+      <e>       <p><l>"</l>         <r>&quot;<s n="rquot"/></r></p></e>
+      <e r="LR"><p><l>»</l>         <r>&quot;<s n="rquot"/></r></p></e>
+      <e r="LR"><p><l>«</l>         <r>&quot;<s n="lquot"/></r></p></e>
+    </pardef>
+
+    <pardef n="aposchar">
+      <e>       <i>'</i></e>
+      <e r="LR"><p><l>’</l>         <r>'</r></p></e>
+    </pardef>
+
+    <pardef n="cometa">
+      <e>       <par n="aposchar"/><p><l></l><r><s n="apos"/></r></p></e>
+    </pardef>
+
+    <pardef n="separa">
+      <e>       <re>[.\?;:!]+</re><p><l></l><r><s n="sent"/></r></p></e>
+    </pardef>
+
+    <pardef n="separ">
+      <e>       <re>[¿¡]</re><p><l></l><r><s n="lquest"/></r></p></e>
+    </pardef>
+
+    <pardef n="paresq">
+      <e>       <re>[\(\[]</re><p><l></l><r><s n="lpar"/></r></p></e>
+    </pardef>
+
+    <pardef n="pardret">
+      <e>       <re>[\)\]]</re><p><l></l><r><s n="rpar"/></r></p></e>
+    </pardef>
+
+    <pardef n="emails">
+      <e>       <re>[a-z.]+@[a-z.]+</re><p><l></l><r><s n="n"/></r></p></e>
+    </pardef>
+
+    <pardef n="urls">
+      <e>       <re>((www.)[a-z\-]+[.][a-z]+)</re><p><l></l><r><s n="n"/></r></p></e>
+    </pardef>
+
     <!-- Define paradigms within <pardef> here. -->
     <pardef n="numeral">
       <e><re>[0123456789]+</re></e>
