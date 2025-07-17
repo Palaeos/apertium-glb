@@ -11,24 +11,28 @@ SECTION
 # REMOVE (n) OR (v) IF (1 (n s)) ;
 
 
-SELECT (n) IF (-1 (pr))  ;
-SELECT (n) IF (-1 (det))  ;
-SELECT (v) IF (-1* (prn)) ;
-SELECT (n) IF  (-2* (pr)) (1* (adj))  ;
-SELECT (adj) IF (-1* (pr)) (1* Nom)  ;
-SELECT (v) IF (-1* (vbpr)) (NOT -1* Nom) ;
-SELECT (vbmod) IF (1 (vbpr)) (NOT 1 v) ;
-SELECT (adv) IF (-1* (vbpr)) (1* v) ;
-SELECT (v) IF (-1* Nom) (NOT 1* (pr)) (2* Nom)  ;
-SELECT (v) IF (-1* Nom) (1* Nom) ;
-SELECT (adj) IF (-2* (vbpr)) (-1* Nom) (1* Nom) ;
-SELECT (adj) IF (-2* (vbpr)) (-1* Nom) (1* Nom) ;
-SELECT (adv) IF (-1* Nom) (1* Nom) ;
-SELECT (v) IF (1* Nom) (2* (pr)) (3* Nom) ;
-SELECT (v) IF (1* Nom) (NOT -2* (pr)) (2* Nom) ;
-SELECT (n) IF  (NOT -2* (pr)) (-2* Nom) (-1* (v)) ;
-SELECT (adj) IF (1* Nom) (2* Nom) (3* Nom) ;
-SELECT (adj) IF (-2* Nom) (-1* Nom) (1* Nom) ;
+REMOVE (vblex) IF (-1 (pr))  ;
+REMOVE (vblex) IF (-1 (vblex))  ;
+REMOVE (vblex) IF (-1 (cnjsub)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
+REMOVE (vblex) IF (-1 (det)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
+REMOVE (vblex) IF (-1 (adj)) ;
+REMOVE (vblex) IF (-1 (vblex pprs));
+REMOVE (vblex) IF (-1 (vblex pp));
+REMOVE (vblex) IF (-1 (adj)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
+REMOVE (n) IF (-1 Nom);
+SELECT (vblex) IF (-1 (adv));
+REMOVE (n) IF (-1 (vbpr));
+REMOVE (n) IF (1 (cnjsub));
+SELECT (adj) IF (-1 (vblex))  (NOT-1 (vblex pprs)) (NOT-1 (vblex pp));
+SELECT (adj) IF (-1 (pr));
+SELECT (adj) IF (-1 (cnjsub));
+SELECT (adj) IF (-1 (adj));
+SELECT (adj) IF (-1 (vblex pprs));
+SELECT (adj) IF (-1 (vblex pp));
+SELECT (vbmod) IF (1 (vbpr)) ;
+SELECT (adv) IF (-1 Nom);
+SELECT (adv) IF (-1 (vbpr));
+SELECT (adv) IF (-1 (adv)) ;
 
 
 # If there is a conjunction followed by a certain cohort of the same CASE as me, choose me.
