@@ -53,6 +53,7 @@ _	vpart	_	_	_	PART	_	_
 _	n	_	_	_	NOUN	_	_
 _	prn	_	_	_	PRON	_	_
 _	pr	_	_	_	ADP	_	_
+_	vbpr	_	_	VERB	ADP	_	_
 _	cnjcoo	_	_	_	CCONJ	_	_
 _	cnjsub	_	_	_	SCONJ	_	_
 _	cnjadv	_	_	_	SCONJ	_	_
