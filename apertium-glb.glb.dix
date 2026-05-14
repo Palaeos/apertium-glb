@@ -410,6 +410,16 @@
     <e>                      <p><l>femete</l>    <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="pl"/></r></p></e>
     <e>                      <p><l>oto</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="pl"/></r></p></e>
 
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p1"/><s n="ut"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p2"/><s n="ut"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p3"/><s n="ut"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p3"/><s n="m"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p1"/><s n="ut"/><s n="pl"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p2"/><s n="ut"/><s n="pl"/></r></p></e>
+    <e>                      <p><l>se</l>        <r>se<s n="prn"/><s n="ref"/><s n="p3"/><s n="ut"/><s n="pl"/></r></p></e>
+
     <e>                      <p><l>misu</l>        <r>prpers<s n="det"/><s n="pos"/><s n="p1"/><s n="ut"/><s n="sg"/></r></p></e>
     <e>                      <p><l>yusu</l>        <r>prpers<s n="det"/><s n="pos"/><s n="p2"/><s n="ut"/><s n="sg"/></r></p></e>
     <e>                      <p><l>tesu</l>        <r>prpers<s n="det"/><s n="pos"/><s n="p3"/><s n="ut"/><s n="sg"/></r></p></e>
