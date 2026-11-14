@@ -1,47 +1,211 @@
-# Firstly, we need to define what tags should be considered sentence delimiters. For this example, only full stop is set as delimiter.
-DELIMITERS = "<.>" ;
+# Globasa Constraint Grammar for POS disambiguation
+#
+# Algorithm:
+#   Section 1: Resolve b-class (n/vblex) via prepositions, tense particles,
+#              determiners, possessives, and numbers — scanning through
+#              intervening t-class (adj/adv) and d;m-class (det/adv) words.
+#   Section 2: SVO disambiguation + lone-b fallback, all in one section
+#              iterating to fixed point so rules can chain on each other's
+#              outputs (rule 88 disambiguates a sentence-initial b → makes
+#              rule 91 fire on the next cohort → makes rule 94 fire on the
+#              one after that).  Each rule guards itself against the other
+#              conjunct of a `ji` being still ambiguous, so coordinated
+#              parallel structures stay safe until Section 3 propagates.
+#   Section 3: Parallel-structure propagation across coordinating CONJ —
+#              once the previous conjunct's head is unambiguously a verb,
+#              the next conjunct's b inherits that V tag too. The noun
+#              counterpart is unnecessary: rule 88's NEGATE form already
+#              defaults lone-b's to N when no verb signal reaches them.
+#   Section 4: Resolve t-class (adj vs adv) and d;m-class (det vs adv)
+#              based on the resolved POS of the next connected b-class word.
+#   Section 5: Interjection cleanup.
+#
+# Globasa phrase structure:
+#   Noun phrase:  (Det) + (PossAdj) + (Quantifier) + (AdvMod) + (Adj) + NOUN
+#   Verb phrase:  (Tense) + (si/no) + (AdvMod) + (Adv) + (be-) + (du-) + VERB
+#
+# Limitation: el-fronted word orders (S-O-V, O-S-V) are rare (poetry/lyrics)
+#             and may not resolve correctly under the SVO heuristic.
 
-# We can define sets for common tag clusters
-# LIST Case = (n s) (n p) ; # A set that matches either a Noun Singular or a Noun Plural
-LIST Nom = n prn ; # A set that matches either a Noun or a Pronoun
-LIST v = vblex vbser ; # A set that matches either a lexical verb or a copula
+DELIMITERS = "<.>" "<!>" "<?>" "<…>" "<...>" ;
+
+# ---------------------------------------------------------------------------
+# Sets
+# ---------------------------------------------------------------------------
+
+LIST Nom = n prn ;                  # Nominals: nouns and pronouns
+LIST AnyVerb = vblex vbser vbmod ;  # Any verbal reading
+LIST AnyNV = n vblex vbser ;        # Any noun or verb (for scanning)
+
+# Barrier set: everything that is NOT an adjective or adverb.
+# Scanning through adj/adv is transparent; anything else blocks.
+LIST NotAdjAdv = n vblex vbser vbmod vaux prn pr vbpr det pos num
+                 cnjsub cnjcoo cnjadv cm sent ij ;
+
+# Clause boundaries reset SVO context. cnjcoo IS still here for Sections 2
+# and 4 so each coord conjunct disambiguates independently first; Section 3
+# then propagates the resolved head of the previous conjunct across `ji`.
+LIST Clause = cnjsub cnjcoo cnjadv cm sent ;
+
+# Combined sets for compound barriers.
+SET AnyVerbOrClause = AnyVerb OR Clause ;
+
+# Things that interrupt the t→b connection (for Section 5).
+SET TConnect = (pr) OR (vbpr) OR Clause ;
+
+
+# ===========================================================================
+# SECTION 1: Resolve b-class via prepositions, particles, determiners, etc.
+# ===========================================================================
+# A preposition/det/poss/num projects forward through t/d;m words to the
+# next b-class word, resolving it as NOUN.  A tense particle (vbpr) projects
+# forward similarly, resolving the next b as VERB.
+#
+# CBARRIER is used instead of BARRIER so that d;m words (det+adv) are
+# transparent: CBARRIER only blocks when ALL readings match the set.
 
 SECTION
-# If there is a singular noun to the right, I cannot be a verb or noun.
-# REMOVE (n) OR (v) IF (1 (n s)) ;
+
+# hay is always a verb (special: allows subject after verb).
+SELECT (vblex) IF (0 ("hay")) ;
+
+# b.lin followed by t-class (adj/adv) → copula (vbser)
+SELECT (vbser) IF (1* (adj) BARRIER NotAdjAdv) ;
+
+# b after preposition → noun
+REMOVE (vblex) IF (-1* (pr) CBARRIER NotAdjAdv) ;
+
+# b after tense particle → verb
+REMOVE (n) IF (-1* (vbpr) CBARRIER NotAdjAdv) ;
+
+# b after determiner → noun
+REMOVE (vblex) IF (-1* (det) CBARRIER NotAdjAdv) ;
+
+# b after possessive adjective → noun
+REMOVE (vblex) IF (-1* (pos) CBARRIER NotAdjAdv) ;
+
+# b after number → noun
+REMOVE (vblex) IF (-1* (num) CBARRIER NotAdjAdv) ;
 
 
-REMOVE (vblex) IF (-1 (pr))  ;
-REMOVE (vblex) IF (-1 (vblex))  ;
-REMOVE (vblex) IF (-1 (cnjsub)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
-REMOVE (vblex) IF (-1 (det)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
-REMOVE (vblex) IF (-1 (adj)) ;
-REMOVE (vblex) IF (-1 (vblex pprs));
-REMOVE (vblex) IF (-1 (vblex pp));
-REMOVE (vblex) IF (-1 (adj)) (NOT 0 (vblex pprs)) (NOT 0 (vblex pp));
-REMOVE (n) IF (-1 Nom);
-SELECT (vblex) IF (-1 (adv));
-REMOVE (n) IF (-1 (vbpr));
-REMOVE (n) IF (1 (cnjsub));
-SELECT (adj) IF (-1 (vblex))  (NOT-1 (vblex pprs)) (NOT-1 (vblex pp));
-SELECT (adj) IF (-1 (pr));
-SELECT (adj) IF (-1 (cnjsub));
-SELECT (adj) IF (-1 (adj));
-SELECT (adj) IF (-1 (vblex pprs));
-SELECT (adj) IF (-1 (vblex pp));
-SELECT (vbmod) IF (1 (vbpr)) ;
-SELECT (adv) IF (-1 Nom);
-SELECT (adv) IF (-1 (vbpr));
-SELECT (adv) IF (-1 (adv)) ;
+# ===========================================================================
+# SECTION 2: SVO disambiguation + lone-b fallback
+# ===========================================================================
+# All three SVO rules live in one section so CG3's iteration can chain
+# their effects: rule 88 disambiguates a sentence-initial / cross-cnjcoo
+# lone-b → rule 91 then fires on the cohort that depends on it → rule 94
+# fires next. Each rule guards against still-ambiguous neighbours so a
+# parallel verb on the other side of `ji` (e.g. `Patre mwa ji glu matre`)
+# isn't prematurely turned into a noun.
+
+SECTION
+
+# Rule 88: Lone-b fallback. Any `b` with neither a Nom-or-V to its left
+# within the (cnjcoo-bounded) clause becomes a noun.
+#
+# NEGATE (not NOT) is essential so the test passes when the leftward scan
+# is *blocked by a BARRIER* without finding the target. CG3 treats NOT as
+# stricter ("no target AND scan not aborted") and so silently failed at
+# every clause split — the original rlx's lone-b rule basically only ever
+# fired at sentence start.
+#
+# The third condition (NEGATE -1 (cnjcoo) LINK -1 (vblex)) protects
+# parallel-verb constructs: when the cohort is preceded by `ji` and the
+# previous conjunct still has a vblex reading (whether unambig or not
+# yet disambiguated), defer to Section 3's parallel-verb SELECT rather
+# than defaulting this b to a noun.
+REMOVE (vblex) IF (NEGATE -1* Nom BARRIER Clause)
+                  (NEGATE -1* (vblex) BARRIER Clause)
+                  (NEGATE -1 (cnjcoo) LINK -1 (vblex)) ;
+
+# Rule 91: b after a noun/pronoun with no verb between → verb.
+#
+# The `NEGATE -1* (vblex) BARRIER AnyVerbOrClause` guard prevents this
+# rule from misfiring when the closest left cohort is itself a still-
+# ambiguous `b` (whose `n` reading would otherwise look like a clause
+# subject). Without the guard, `matre` in `Patre mwa ji glu matre` treats
+# the unresolved `glu` as a noun-subject and gets pruned to vblex before
+# Section 3 can resolve `glu` as a parallel verb.
+REMOVE (n) IF (-1* Nom BARRIER AnyVerbOrClause)
+              (NEGATE -1* (vblex) BARRIER AnyVerbOrClause) ;
+
+# Rule 94: b after a verb → object (noun).
+REMOVE (vblex) IF (-1* AnyVerb BARRIER Clause) ;
 
 
-# If there is a conjunction followed by a certain cohort of the same CASE as me, choose me.
-# SELECT $$Case IF (1 (cnjcoo) LINK 1C $$Case) ;
+# ===========================================================================
+# SECTION 3: Parallel-structure propagation across coordinating CONJ
+# ===========================================================================
+# Once Section 2 has disambiguated each conjunct in isolation, propagate
+# the head's POS across `ji`/`or`/`mas`/... so that
+#   Patre mwa ji glu matre → mwa V (S2) → glu V (S3) → then S3's re-run
+#   of the verb-left rule makes matre N.
+# Noun coord (`Vyata ji imanu sen muhim`) is already handled by rule 88's
+# lone-b fallback in Section 2.
+
+SECTION
+
+# Parallel-verb: SELECT vblex on a b whose immediate left is `cnjcoo` and
+# whose neighbour through the coordinator is an unambiguous verb (no n
+# reading remaining). The `NEGATE -2 (n)` guard ensures the previous
+# conjunct has fully resolved before this fires.
+SELECT (vblex) IF (-1 (cnjcoo)) (-2 (vblex)) (NEGATE -2 (n)) ;
+
+# Once SELECT has forced the right conjunct to vblex, re-apply the
+# verb-left rule so a trailing object resolves too (e.g. `matre` in
+# `Patre mwa ji glu matre`).
+REMOVE (vblex) IF (-1* AnyVerb BARRIER Clause) ;
+
+
+# ===========================================================================
+# SECTION 3: Resolve t-class (adj/adv) and d;m-class (det/adv)
+# ===========================================================================
+# Look right for the next b-class word not interrupted by a preposition,
+# tense particle, or clause boundary.
+#   - If that b is a noun → t is ADJ, d;m is DET.
+#   - If that b is a verb → t is ADV, d;m is ADV.
+#   - If punctuation/clause boundary intervenes → rules 1-3 fail, fall to default.
+# Special: t after copula (vbser) with no following b in clause → ADJ.
+# Default: ADV.
+
+SECTION
+
+# t connected to following NOUN-not-verb → adjective.
+# The barrier includes AnyVerb so a t standing before a verb (e.g.
+# `Le velosi yam pingo`) doesn't look past the verb to the object noun
+# and mis-tag itself as ADJ. The nearest b's category wins.
+SELECT (adj) IF (1* (n) BARRIER TConnect OR AnyVerb) ;
+
+# d;m connected to following NOUN-not-verb → determiner
+SELECT (det) IF (1* (n) BARRIER TConnect OR AnyVerb) ;
+
+# t or d;m connected to following VERB-not-noun → adverb
+SELECT (adv) IF (1* AnyVerb BARRIER TConnect OR (n) OR (prn)) ;
+
+# t after copula with no following noun/verb in clause → adjective (predicate).
+# NEGATE (not NOT) so the test passes when the rightward scan is blocked
+# by a Clause barrier without reaching an NV target — same CG3 quirk that
+# previously kept rule 88's lone-b fallback silent at every clause split.
+SELECT (adj) IF (-1* (vbser) BARRIER NotAdjAdv) (NEGATE 1* AnyNV BARRIER Clause) ;
+
+# Default: adverb
+SELECT (adv) ;
+
+
+# ===========================================================================
+# SECTION 4: Interjection cleanup
+# ===========================================================================
+# Remove interjection readings when adjacent to content words.
+
+SECTION
+
+REMOVE (ij) IF (-1 Nom) ;
+REMOVE (ij) IF (1 Nom) ;
+REMOVE (ij) IF (-1 (vblex)) ;
+REMOVE (ij) IF (1 (vblex)) ;
+REMOVE (ij) IF (1 (adv)) ;
 
 # Resources:
-# http://visl.sdu.dk/cg3.html
-# http://groups.google.com/group/constraint-grammar
-# http://kevindonnelly.org.uk/2010/05/constraint-grammar-tutorial/
+# https://edu.visl.dk/cg3/chunked/
 # https://wiki.apertium.org/wiki/Constraint_Grammar
 # https://wiki.apertium.org/wiki/Apertium_and_Constraint_Grammar
-
